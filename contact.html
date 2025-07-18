@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact ME | Rewan</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">PORTFOLIO</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="publishments.html">Publishments</a></li>
+        <li><a class="active" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<section class="section">
+  <h1>Contact Me</h1>
+  <form class="contact-form" id="contactForm">
+    <input name="entry.1072669873" type="text" placeholder="Your Name" required />
+    <input name="entry.1297949091" type="email" placeholder="Your Email" required />
+    <textarea name="entry.1223490275" rows="6" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+  <p id="responseMsg" style="display:none; color:green; font-weight:bold; text-align:center; margin-top:15px;">
+    Thank you! Your message was sent.
+  </p>
+</section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const responseMsg = document.getElementById('responseMsg');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSdcZ8PrewkZLtcZnEMGIC7N2u4L2aOIqlFZCDQtVk_DdRiHsw/formResponse', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).then(() => {
+      form.reset();
+      responseMsg.style.display = 'block';
+    }).catch(() => {
+      alert('There was an error sending your message.');
+    });
+  });
+</script>
+
+
+</body>
+ 
+
+</html>
